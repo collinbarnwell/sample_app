@@ -12,9 +12,9 @@ describe "User pages" do
   end
 
   describe "signup page" do 
-	before { visit signup_path }
-	it {should have_selector('h1', text: 'Sign up')}
-	it {should have_selector('title', text: full_title('Sign up'))}
+	  before { visit signup_path }
+	  it {should have_selector('h1', text: 'Sign up')}
+	  it {should have_selector('title', text: full_title('Sign up'))}
   end
 
    describe "signup" do
@@ -40,7 +40,11 @@ describe "User pages" do
       it "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
+
+      describe 'followed by signout' do
+        before { click_link "Sign out" }
+        it { should have_link('Sign in') }
+      end
     end
   end
-
 end
